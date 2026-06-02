@@ -10,8 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const heroNavBar = document.querySelector('.hero-nav-bar');
+  
+  if (mobileMenuBtn && heroNavBar) {
+    mobileMenuBtn.addEventListener('click', () => {
+      heroNavBar.classList.toggle('active');
+    });
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+      if (heroNavBar && heroNavBar.classList.contains('active')) {
+        heroNavBar.classList.remove('active');
+      }
+
       const targetId = this.getAttribute('href');
       if (targetId === '#') return;
       
